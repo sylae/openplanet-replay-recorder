@@ -1,0 +1,10 @@
+[meta]
+name = "Replay Recorder"
+author = "Greep"
+category = "Replay"
+
+version = "1.0"
+
+[script]
+imports = [ "Formatting.as" ]
+timeout = 0
