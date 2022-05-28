@@ -102,7 +102,7 @@ class ReplayRecord
                 if (m_inProgress) {
                     UI::Text("\\$f00" + Icons::Circle + " \\$zRecording...");
                     UI::Text(m_totalRecorded + " replays recorded.");
-                    UI::TextDisabled("Replays will be saved in " + m_path);
+                    UI::TextDisabled("Replays will be saved to " + m_path);
                     if (UI::Button(Icons::StopCircle + " Stop recording")) {
                         m_inProgress = false;
                         m_totalRecorded = 0;
