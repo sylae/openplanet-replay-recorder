@@ -44,7 +44,10 @@ class ReplayRecord
                         m_finishedOnce = false;
                     }
                 }
-            } else m_inProgress = false;
+            } else {
+                m_inProgress = false;
+                m_totalRecorded = 0;
+            }
         }
     }
 
