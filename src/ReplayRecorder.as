@@ -65,7 +65,7 @@ class ReplayRecord
             string replayFilePath = m_path + "/" + replayName;
             m_gameDataFileManager.Replay_Save(replayFilePath, m_map, ghost);
 
-            UI::ShowNotification("\\$6f9" + Icons::VideoCamera + " \\zReplay saved!", replayName);
+            UI::ShowNotification("\\$6f9" + Icons::VideoCamera + " \\$zReplay saved!", replayName);
         }
     }
 
