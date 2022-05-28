@@ -28,7 +28,7 @@ void RenderMenu()
 }
 
 void RenderMenuMain(){
-    if (g_replayRecord.m_inProgress && UI::MenuItem("\\$f00" + Icons::Circle + " \\$zReplay Recording in progress, click to stop")) {
+    if (g_replayRecord.m_inProgress && UI::MenuItem("\\$f00" + Icons::Circle + " \\$666("+g_replayRecord.m_totalRecorded+")" + " \\$zReplay Recording in progress, click to stop")) {
         g_replayRecord.m_inProgress = false;
         g_replayRecord.m_totalRecorded = 0;
     }
