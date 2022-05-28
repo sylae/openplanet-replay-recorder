@@ -3,7 +3,7 @@ name = "Replay Recorder"
 author = "Greep"
 category = "Replay"
 
-version = "1.0"
+version = "1.1"
 
 [script]
 imports = [ "Formatting.as" ]
