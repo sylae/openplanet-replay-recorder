@@ -28,8 +28,14 @@ void RenderMenu()
 }
 
 void RenderMenuMain(){
-    if (g_replayRecord.m_inProgress && UI::MenuItem("\\$f00" + Icons::Circle + " \\$666("+g_replayRecord.m_totalRecorded+")" + " \\$zReplay Recording in progress, click to stop")) {
+    if (g_replayRecord.m_inProgress && UI::MenuItem("\\$f00" + Icons::Circle + " \\$666("+g_replayRecord.m_totalRecorded+")" + " \\$zReplay Recording in progress")) {
         g_replayRecord.m_inProgress = false;
         g_replayRecord.m_totalRecorded = 0;
+    }
+    if (UI::IsItemHovered()) {
+        UI::BeginTooltip();
+        UI::Text("\\$6f9" + Icons::VideoCamera + " \\$zClick to stop recording");
+        UI::TextDisabled(Icons::InfoCircle + " Replays are saved to " + g_replayRecord.m_path);
+        UI::EndTooltip();
     }
 }
