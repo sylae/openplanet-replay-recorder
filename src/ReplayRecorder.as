@@ -25,8 +25,10 @@ class ReplayRecord
     void Update()
     {
         @m_playground = cast<CSmArenaClient>(GetApp().CurrentPlayground);
-        @m_map = m_playground.Map;
         @m_playgroundScript = cast<CSmArenaRulesMode>(GetApp().PlaygroundScript);
+        if (m_playground !is null) {
+            @m_map = m_playground.Map;
+        }
 
         if (m_inProgress) {
             if (m_map !is null && m_playground !is null) {
