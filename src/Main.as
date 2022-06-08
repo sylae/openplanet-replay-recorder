@@ -32,7 +32,7 @@ void RenderMenuMain(){
         g_replayRecord.m_inProgress = false;
         g_replayRecord.m_totalRecorded = 0;
     }
-    if (UI::IsItemHovered()) {
+    if (g_replayRecord.m_inProgress && UI::IsItemHovered()) {
         UI::BeginTooltip();
         UI::Text("\\$6f9" + Icons::VideoCamera + " \\$zClick to stop recording");
         UI::TextDisabled(Icons::InfoCircle + " Replays are saved to " + g_replayRecord.m_path);
