@@ -34,7 +34,7 @@ class ReplayRecord
             if (m_map !is null && m_playground !is null) {
                 if (m_playgroundScript !is null && m_playground.GameTerminals.Length > 0) {
                     CSmPlayer@ player = cast<CSmPlayer>(m_playground.GameTerminals[0].ControlledPlayer);
-                    if (m_playground.GameTerminals[0].UISequence_Current == CGameTerminal::ESGamePlaygroundUIConfig__EUISequence::Finish && player !is null && !m_finishedOnce) {
+                    if (m_playground.GameTerminals[0].UISequence_Current == SGamePlaygroundUIConfig::EUISequence::Finish && player !is null && !m_finishedOnce) {
                         m_finishedOnce = true;
                         CSmScriptPlayer@ playerScriptAPI = cast<CSmScriptPlayer>(player.ScriptAPI);
                         CGameGhostScript@ ghost = m_playgroundScript.Ghost_RetrieveFromPlayer(playerScriptAPI);
@@ -42,7 +42,7 @@ class ReplayRecord
                             SaveReplay(ghost);
                             m_playgroundScript.DataFileMgr.Ghost_Release(ghost.Id);
                         }
-                    } else if (m_playground.GameTerminals[0].UISequence_Current == CGameTerminal::ESGamePlaygroundUIConfig__EUISequence::Playing && player !is null && m_finishedOnce) {
+                    } else if (m_playground.GameTerminals[0].UISequence_Current == SGamePlaygroundUIConfig::EUISequence::Playing && player !is null && m_finishedOnce) {
                         m_finishedOnce = false;
                     }
                 }
@@ -110,7 +110,7 @@ class ReplayRecord
                         m_totalRecorded = 0;
                     }
                 } else {
-                    UI::Text(m_map.MapName);
+                    UI::Text(string(m_map.MapName).Replace('$', '\\$')); // todo, this is not perfect but good enough for most maps.
                     UI::TextDisabled(m_map.AuthorNickName);
                     if (UI::Button(Icons::PlayCircle + " Start recording")) {
                         m_inProgress = true;
