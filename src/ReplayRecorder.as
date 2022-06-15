@@ -110,7 +110,7 @@ class ReplayRecord
                         m_totalRecorded = 0;
                     }
                 } else {
-                    UI::Text(string(m_map.MapName).Replace('$', '\\$')); // todo, this is not perfect but good enough for most maps.
+                    UI::Text(ColoredString(m_map.MapName));
                     UI::TextDisabled(m_map.AuthorNickName);
                     if (UI::Button(Icons::PlayCircle + " Start recording")) {
                         m_inProgress = true;
