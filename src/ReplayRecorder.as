@@ -3,6 +3,7 @@ class ReplayRecord
     string m_path;
 
     bool m_inProgress;
+	bool hasAutoStarted = false;
     int m_totalRecorded;
 
     bool m_finishedOnce;
@@ -29,6 +30,16 @@ class ReplayRecord
         if (m_playground !is null) {
             @m_map = m_playground.Map;
         }
+		
+		if (m_map !is null && m_playground !is null) {
+			if (alwaysBeRecording && !m_inProgress && !hasAutoStarted) {
+				m_inProgress = true;
+				InitPath();
+				hasAutoStarted = true;
+			}
+		} else {
+			hasAutoStarted = false;
+		}
 
         if (m_inProgress) {
             if (m_map !is null && m_playground !is null) {
