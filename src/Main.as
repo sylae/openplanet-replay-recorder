@@ -28,7 +28,34 @@ void RenderMenu()
 }
 
 void RenderMenuMain(){
-    if (g_replayRecord.m_inProgress && UI::MenuItem("\\$f00" + Icons::Circle + " \\$666("+g_replayRecord.m_totalRecorded+")" + " \\$zReplay Recording in progress")) {
+
+	string recColor, labelColor, totalColor;
+	if (blinkyOverlayLabel && (Time::get_Stamp() % 2 == 1)) {
+		recColor = "\\$800";
+		labelColor = "\\$666";
+		totalColor = "\\$333";
+	} else {
+		recColor = "\\$f00";
+		labelColor = "\\$z";
+		totalColor = "\\$666";
+	}
+
+
+	string overlayStr;
+	if (shortOverlayLabel) {
+		overlayStr = recColor + Icons::Circle + labelColor + " REC";
+	} else {
+		overlayStr = recColor + Icons::Circle + totalColor + " ("+g_replayRecord.m_totalRecorded+")" + labelColor + " Replay Recording in progress";
+	}
+	
+	auto pos_orig = UI::GetCursorPos();
+	auto textSize = Draw::MeasureString(overlayStr);
+	if (rightOverlayLabel) {
+		UI::SetCursorPos(vec2(UI::GetWindowSize().x - textSize.x - rightOverlayLabelOffset, pos_orig.y));
+	}
+
+	
+    if (g_replayRecord.m_inProgress && UI::MenuItem(overlayStr)) {
         g_replayRecord.m_inProgress = false;
         g_replayRecord.m_totalRecorded = 0;
     }
@@ -38,4 +65,7 @@ void RenderMenuMain(){
         UI::TextDisabled(Icons::InfoCircle + " Replays are saved to " + g_replayRecord.m_path);
         UI::EndTooltip();
     }
+	if (rightOverlayLabel) {
+		UI::SetCursorPos(pos_orig);
+	}
 }
