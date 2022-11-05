@@ -19,7 +19,7 @@ class ReplayRecord
         string replayPath = IO::FromUserGameFolder("Replays/ReplayRecorder");
         if (!IO::FolderExists(replayPath)) IO::CreateFolder(replayPath);
 
-        m_path = replayPath + "/" + Time::FormatString("%F_%H-%M-%S") + " - " + m_map.MapName;
+        m_path = replayPath + "/" + getFolderName();
     }
 
     void Update()
@@ -142,4 +142,17 @@ class ReplayRecord
 
         return result;
     }
+	
+	string getFolderName() {
+		switch (folderFormat) {
+			case folderMode::UID:
+				return m_map.MapInfo.MapUid;
+			case folderMode::UIDAndName:
+				return m_map.MapInfo.MapUid + " - " + m_map.MapName;
+			case folderMode::DateAndName: 
+			default:
+				return Time::FormatString("%F_%H-%M-%S") + " - " + m_map.MapName;
+		}
+		return "";
+	}
 }
